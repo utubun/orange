@@ -1,23 +1,37 @@
-import logo from './logo.svg';
 import './App.css';
+import React, { useState } from 'react';
+import { gql, useQuery } from '@apollo/client';
+import GeneSearch from './GeneSearch'
+import GenesResults from './GenesResults';
+
+const GET_ORGANISMS_QUERY = gql`
+  {
+    organisms {
+      id
+      name
+      genes {
+        id
+        name
+      }
+    }
+  }
+`;
 
 function App() {
+
+  const [selected, setSelection] = useState('All');
+
+  const { loading, error, data } = useQuery(GET_ORGANISMS_QUERY);
+
+  if (error) return <p>{error}</p>;
+  if (loading) return <p>Loading...</p>;
+
+  console.log(JSON.stringify(data, null, 2));
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <GeneSearch   selected = { selected } setSelection = { setSelection } />
+      <GenesResults data = { data } selected = { selected } />
     </div>
   );
 }
