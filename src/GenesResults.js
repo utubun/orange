@@ -8,23 +8,23 @@ function GenesResults({ data, selected }) {
                     <tr>
                         <th>ID</th>
                         <th>Name</th>
-                        <th>Genes</th>
+                        <th>Alternative names</th>
                     </tr>
                 </thead>
                 <tbody>
                     {
-                        data.organisms
-                          .filter(org => (
-                            selected === 'All' ? true : org.name === selected
+                        data.genes
+                          .filter(gene => (
+                            selected === 'All' ? true : gene.name === selected
                             )
                           )
-                          .map((org, i) => (
+                          .map((gene, i) => (
                             <tr key={i}>
-                                <td>{ org.id }</td>
-                                <td>{ org.name }</td>
+                                <td>{ gene.id }</td>
+                                <td>{ gene.name }</td>
                                 <td>
                                     {
-                                        org.genes.map((gene) => gene.name)
+                                        gene.alt.join('; ')
                                     }
                                 </td>
                             </tr>

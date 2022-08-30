@@ -4,29 +4,25 @@ import { gql, useQuery } from '@apollo/client';
 import GeneSearch from './GeneSearch'
 import GenesResults from './GenesResults';
 
-const GET_ORGANISMS_QUERY = gql`
-  {
-    organisms {
+const GET_GENES_QUERY = gql`
+  query GenesByName($selected: String!) {
+    genes (where: { name_CONTAINS: $selected } ) {
       id
       name
-      genes {
-        id
-        name
-      }
-    }
-  }
+      alt
+    }}
 `;
 
 function App() {
 
-  const [selected, setSelection] = useState('All');
+  const [selected, setSelection] = useState("");
 
-  const { loading, error, data } = useQuery(GET_ORGANISMS_QUERY);
+  const { loading, error, data } = useQuery(GET_GENES_QUERY, {
+    variables: { selected },
+  });
 
-  if (error) return <p>{error}</p>;
+  if (error)   return <p>{error}</p>;
   if (loading) return <p>Loading...</p>;
-
-  console.log(JSON.stringify(data, null, 2));
 
   return (
     <div>
