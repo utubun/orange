@@ -36,3 +36,46 @@
     transform: rotate(360deg);
   }
 }
+
+table {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+  border: 2px solid gray;
+}
+
+thead th:nth-child(1) {
+  width: 3%;
+}
+
+th, td {
+  padding: 5px;
+  letter-spacing: 2px;
+}
+
+tbody td {
+  text-align: left;
+}
+
+tfoot th {
+  text-align: right;
+}
+
+caption {
+  font-family: 'Rock Salt', cursive;
+  padding: 20px;
+  font-style: italic;
+  caption-side: bottom;
+  text-align: right;
+  letter-spacing: 1px;
+}
+
+html {
+  font-family: 'helvetica neue', helvetica, arial, sans-serif;
+}
+
+thead th, tfoot th {
+  font-family: 'Rock Salt', cursive;
+}
+
+
