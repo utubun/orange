@@ -3,6 +3,11 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { initDriver } from './services/neo4j';
+
+// initialize driver
+
+const driver = initDriver('bolt://127.0.0.1:7687', 'neo4j', 'user');
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
