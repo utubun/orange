@@ -5,10 +5,10 @@ async function driverInfo (driver) {
   const { address, agent, protocolVersion } = await driver.getServerInfo();
 
   console.log(`
-    Database 🍅\tConnected!\n
-    Address 📡\t${address}\n
-    Agent \t🕵\t${agent}\n
-    Version 📜\t${protocolVersion}
+    Database:\t🍅 Connected!\n
+    Address:\t📡 ${address}\n
+    Agent:\t\t🕵 ${agent}\n
+    Version:\t📜 ${protocolVersion}
   `)
 }
 
@@ -22,4 +22,4 @@ export async function initDriver(uri, username, password) {
     driverInfo(driver);
 
     return driver;
-  }
+  };
