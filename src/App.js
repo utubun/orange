@@ -2,51 +2,37 @@ import { BrowserRouter as Router, Routes, Route, Link, generatePath } from 'reac
 import { Menu } from 'semantic-ui-react';
 import Home from './views/Home';
 import PathwayGrid from './views/PathwayGrid';
-import Loading from './components/Loading';
-import Error from './components/Error';
-import { useReadCypher, useWriteCypher } from 'use-neo4j';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import './App.css';
 
 
 function App() {
 
-  //const result = useReadCypher('MATCH (n:Pathway) RETURN n { .* } AS pathway;');
-  
-  const result = useReadCypher(`
-    MATCH (p:Pathway)--(m:Module)--(r:Reaction)--(c:Compound)
-    WITH p, 
-         toInteger(count(DISTINCT m)) AS modules, 
-         toInteger(count(DISTINCT r)) AS reactions, 
-         toInteger(count(DISTINCT c)) AS compounds
-    RETURN p { .*, modules, reactions, compounds } AS pathway;
-    `
-  );
+  const client = axios.create({
+    baseURL: "http://127.0.0.1:8080/api/"
+  });
 
-  /*if (result.loading) {
-    return <Loading />
-  }
+  const [ pathways, setPathways ] = useState([])
 
-  if (result.error) {
-    return <Error />
-  }
+  console.log(pathways)
 
-  if (result.result) {
-    result.records = toNativeTypes(result.records?.map((item) => item.get('pathway')));
-  }*/
-
-  
-  
+  useEffect(() => {
+    client.get('pathways/').then((data) => {
+       setPathways(data);
+    });
+ }, []);
 
   return (
     <div className="App">
       <Router>
         <Menu>
           <Menu.Item as = {Link} to = "/">Home</Menu.Item>
-          <Menu.Item as = {Link} to = "/pathway">Pathway</Menu.Item>
+          <Menu.Item as = {Link} to = "/pathways">Pathways</Menu.Item>
         </Menu>
         <Routes>
           <Route path = "/" element={<Home />} />
-          <Route path = "/pathway/" element = {<PathwayGrid {...result} />} />
+          <Route path = "/pathways/" element = {<PathwayGrid {...pathways} />} />
         </Routes>
       </Router>
     </div>

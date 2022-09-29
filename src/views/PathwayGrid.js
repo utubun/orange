@@ -3,30 +3,15 @@ import { Grid, Segment } from 'semantic-ui-react';
 import { PathwayCard } from './PathwayCard';
 import Loading from '../components/Loading';
 import Error from '../components/Error';
-import { toNativeTypes } from '../utils/utils'
 
- const PathwayGrid = ({ loading, error, result, records }) => {
+ const PathwayGrid = ({ data }) => {
 
-    if (loading) {
-        return <Loading />
-    };
-
-    if (error) {
-        return <Error />
-    };
-
-    if (result) {
-
-        const entries = records.map((item) => toNativeTypes(item.get('pathway')));
-
-        console.log('After conversion');
-        console.log(typeof entries);
-        console.log(entries[0])
+    if (data) {
         
         return (
             <Grid container columns = {3}>
                 {
-                    entries.map((item) => (
+                    data.map((item) => (
                         <Grid.Column key={item.id}>
                             <PathwayCard { ...item } />
                         </Grid.Column>

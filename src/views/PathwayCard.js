@@ -2,8 +2,12 @@ import React from 'react';
 import { Card } from 'semantic-ui-react';
 import PathwayStatistics from './PathwayStatistic';
 
+const handleClick = (id) => {
+    alert(`Hello, I am ${id}`)
+}
+
  export const PathwayCard = ({ id, name, modules, reactions, compounds }) => (
-    <Card>
+    <Card onClick={() => handleClick(id)}>
         <Card.Content>
             {/*<Card.Header>Metabolic Pathway</Card.Header>*/}
             <Card.Meta textAlign='right'>
@@ -14,7 +18,12 @@ import PathwayStatistics from './PathwayStatistic';
             </Card.Description>
         </Card.Content>
         <Card.Content extra>
-            <PathwayStatistics {...{modules: modules, reactions: reactions, compounds: compounds}} />
+            <PathwayStatistics {...{
+                modules: modules.length, 
+                reactions: reactions.length, 
+                compounds: compounds.length
+                }
+            } />
         </Card.Content>
     </Card>
  );
