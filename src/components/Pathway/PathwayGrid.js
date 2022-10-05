@@ -1,8 +1,8 @@
 import React from 'react';
 import { Grid, Segment } from 'semantic-ui-react';
-import { PathwayCard } from './PathwayCard';
-import Loading from '../components/Loading';
-import Error from '../components/Error';
+import Error from "../Error/Error";
+import Loading from "../Loading/Loading";
+import { PathwayCard } from "./PathwayCard";
 
  const PathwayGrid = ({ data }) => {
 
@@ -19,7 +19,7 @@ import Error from '../components/Error';
                 }
             </Grid>
         )
-    }
+    } 
  };
 
 export default PathwayGrid;

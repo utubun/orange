@@ -1,6 +1,5 @@
 import React from 'react';
 import { Statistic, Label } from 'semantic-ui-react';
-import { useReadCypher } from 'use-neo4j';
 
 const PathwayStatistics = (props) => {
 
