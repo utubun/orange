@@ -3,19 +3,10 @@ import API from "./api";
 import { Menu } from 'semantic-ui-react';
 import Home from './views/Home';
 import { PathwayGrid } from "./components";
-import React, { useState, useEffect } from 'react';
 import './App.css';
 
 
 function App() {
-
-  const [ pathways, setPathways ] = useState([])
-
-  useEffect(() => {
-    API.get('pathways/').then((data) => {
-       setPathways(data);
-    });
- }, []);
 
   return (
     <div className="App">
@@ -26,7 +17,7 @@ function App() {
         </Menu>
         <Routes>
           <Route path = "/" element={<Home />} />
-          <Route path = "/pathways/" element = {<PathwayGrid {...pathways} />} />
+          <Route path = "/pathways/" element = {<PathwayGrid />} />
         </Routes>
       </Router>
     </div>
