@@ -1,10 +1,21 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Grid, Segment } from 'semantic-ui-react';
-import { PathwayCard } from './PathwayCard';
-import Loading from '../components/Loading';
-import Error from '../components/Error';
+import Error from "../Error/Error";
+import Loading from "../Loading/Loading";
+import { PathwayCard } from "./PathwayCard";
+import API from "../../api/"
 
- const PathwayGrid = ({ data }) => {
+ const PathwayGrid = () => {
+
+    const [ data, setData ] = useState([])
+
+    useEffect(() => {
+      API.get('pathways/').then((response) => {
+         const result = response.data;
+         setData(result);
+      });
+   }, []);
+
 
     if (data) {
         
@@ -19,7 +30,7 @@ import Error from '../components/Error';
                 }
             </Grid>
         )
-    }
+    } 
  };
 
 export default PathwayGrid;
