@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Grid, Segment } from 'semantic-ui-react';
 import Error from "../Error/Error";
 import Loading from "../Loading/Loading";
 import { PathwayCard } from "./PathwayCard";
@@ -20,15 +19,15 @@ import API from "../../api/"
     if (data) {
         
         return (
-            <Grid container columns = {3}>
+            <div>
                 {
                     data.map((item) => (
-                        <Grid.Column key={item.id}>
+                        <div key={item.id}>
                             <PathwayCard { ...item } />
-                        </Grid.Column>
+                        </div>
                         ))
                 }
-            </Grid>
+            </div>
         )
     } 
  };

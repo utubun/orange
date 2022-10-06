@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import 'semantic-ui-css/semantic.min.css'; // downgrade to react-scripts@4.0.3.
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';

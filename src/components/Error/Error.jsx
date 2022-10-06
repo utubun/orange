@@ -1,11 +1,10 @@
 import React from 'react';
-import { Message } from 'semantic-ui-react';
 
 const Error = () => (
-    <Message negative>
-        <Message.Header>Error!</Message.Header>
+    <div>
+        <div>Error!</div>
         <p>Unknown error</p>
-    </Message>
+    </div>
 );
 
 export default Error;

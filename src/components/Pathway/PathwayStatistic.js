@@ -1,20 +1,19 @@
 import React from 'react';
-import { Statistic, Label } from 'semantic-ui-react';
 
 const PathwayStatistics = (props) => {
 
     return (
-        <Label.Group size='tiny'>
+        <div>
             {
                 Object.entries(props).map(([key, value]) => (
-                    <Label>
+                    <div>
                         {key}
-                        <Label.Detail>{value}</Label.Detail>
-                    </Label>
+                        <div>{value}</div>
+                    </div>
                 ))
             }
 
-        </Label.Group>        
+        </div>        
     )
  };
 
