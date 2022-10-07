@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Error from "../Error/Error";
 import Loading from "../Loading/Loading";
 import PreviewPathway from "./PathwayCard";
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
 import API from "../../api/"
 
  const PathwayGrid = () => {
@@ -36,12 +38,20 @@ import API from "../../api/"
 
    return (
     <>
+        { error && <Error /> }
+        { loading && <Loading /> }
         {
-            data.map((item) => (
-                <div key={item.id}>
-                    <PreviewPathway { ...item } />
-                </div>
-            ))
+            <Box sx = {{ width: '100%' }}>
+                <Grid container spacing={3}>
+                    {
+                        data.map((item) => (
+                            <Grid item xs = {2}>
+                                <PreviewPathway key={item.id} { ...item } />                                 
+                            </Grid>
+                        ))
+                    }
+                </Grid>
+            </Box>
         }
     </>
     )

@@ -1,46 +1,49 @@
 import React from 'react';
 import Card from '@mui/material/Card';
+import CardHeader from '@mui/material/CardHeader';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
+import Avatar from '@mui/material/Avatar';
+import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
 import PathwayStatistics from './PathwayStatistic';
+import { orange } from '@mui/material/colors';
+import HubOutlined from '@mui/icons-material/HubOutlined';
 
 const handleClick = (id) => {
     alert(`Hello, I am happy Id: ${id}`)
 }
 
 const PreviewPathway = ({ id, name, modules, reactions, compounds }) => (
-    <Card sx={{ minWidth: 275}}>
-        <CardContent>
-            <Typography sx={{ fontsize: 14 }} color="text.secondary" qutterBottom>
-                {`KEGG Pathway: ${id}`}
+    <Card>
+        <CardHeader
+          avatar = {
+            <Avatar sx = {{ bgcolor: orange[500] }} aria-label="pathway">
+                <HubOutlined />
+            </Avatar>
+          }
+          action = {
+            <IconButton aria-label="settings">
+                <MoreVertIcon />
+            </IconButton>
+          }
+          title = {
+            <Typography sx={{ fontsize: 10 }} color="text.secondary" qutterBottom>
+
             </Typography>
+          }
+          subheader = {`${name.substring(0, 50)}... (${id})`} 
+        />
+        <CardContent>
+            <PathwayStatistics 
+              modules = { modules } 
+              reactions = { reactions } 
+              compounds = { compounds } 
+          />
         </CardContent>
     </Card>
 )
-
- const PathwayCard = ({ id, name, modules, reactions, compounds }) => (
-    <div onClick={() => handleClick(id)}>
-        <div>
-            {/*<Card.Header>Metabolic Pathway</Card.Header>*/}
-            <div textAlign='right'>
-            <span><img className="network" src="../neural.png" alt={"neural"} width="32" height="32"/></span>
-                <span className='id'>{ `KEGG Id: ${id}` }</span>
-            </div>
-            <div>
-                { `${name.substring(0, 60)}...` }
-            </div>
-        </div>
-        <div>
-            <PathwayStatistics {...{
-                modules: modules.length, 
-                reactions: reactions.length, 
-                compounds: compounds.length
-                }
-            } />
-        </div>
-    </div>
- );
 
  export default PreviewPathway;
  
