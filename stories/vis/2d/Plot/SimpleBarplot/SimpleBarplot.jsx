@@ -40,9 +40,12 @@ const SimpleBarplot = ({ data, width, height, margin }) => {
               .join('rect')
                 .attr('class', 'bar')
                 .attr('x', (d) => x(d.x))
+                .attr('width', x.bandwidth())
+                .attr('y', (d) => y(0))
+                .transition(2500)
+                .ease(d3.easeBounce)
                 .attr('y', (d) => y(d.y))
-                .attr('height', (d) => y(0) - y(d.y))
-                .attr('width', x.bandwidth());
+                .attr('height', (d) => y(0) - y(d.y));
 
             view.exit()
               .remove();
