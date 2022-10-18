@@ -1,0 +1,11 @@
+.yarn
+.npm
+.next
+.dist
+node_modules
+.git
+.eslintrc.json
+.prettierrc
+next.config.js
+package-lock.json
+package.json
