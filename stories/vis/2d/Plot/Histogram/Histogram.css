@@ -1,15 +1,14 @@
 rect {
-    fill: crimson;
-    opacity: 0.5;
-    
+  fill: crimson;
+  opacity: 0.5;
 }
 
 rect:hover {
-    fill: crimson;
-    opacity: .75;
+  fill: crimson;
+  opacity: 0.75;
 }
 
 text {
-    color: darkgray;
-    text-align: left;
+  color: darkgray;
+  text-align: left;
 }
