@@ -1,0 +1,25 @@
+circle.node {
+  fill: skyblue;
+  r: 5pt;
+}
+
+circle.node:hover {
+  r: 5.5pt;
+}
+
+.edge {
+  stroke: skyblue;
+  stroke-width: 0.5pt;
+}
+
+.edge:hover {
+  stroke-width: 1pt;
+}
+
+.node-label {
+  text-anchor: middle;
+  dominant-baseline: central;
+  font-family: 'Helvetica Neue', Helvetica, sans-serif;
+  fill: #666;
+  font-size: 6pt;
+}
