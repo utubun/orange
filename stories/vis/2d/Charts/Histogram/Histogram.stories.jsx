@@ -22,6 +22,6 @@ SimpleHistogram.args = {
 };
 
 export default {
-  title: 'Visualizations/2D/SimpleHistogram',
-  component: SimpleHistogram,
+  title: 'Visualizations/2D/Histogram',
+  component: Histogram,
 };

@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import * as d3 from 'd3';
-import './Histogram.css';
+import './histogram.module.css';
 
 const Histogram = ({ data, width, height, margin }) => {
   const d3Container = useRef(null);
@@ -56,12 +56,13 @@ const Histogram = ({ data, width, height, margin }) => {
 
     view
       .append('g')
-      .selectAll('rect')
+      .selectAll('bar')
       .data(bins)
       .join('rect')
       .attr('x', (d) => xScale(d.x0) + 0.5)
-      .attr('width', (d) => Math.max(0, xScale(d.x1) - xScale(d.x0) - 0.5 * 2))
+      .attr('width', (d) => Math.max(0, xScale(d.x1) - xScale(d.x0) - 0.25 * 2))
       .attr('y', (d) => yScale(0))
+      .attr('fill', 'orange')
       .transition(2000)
       .ease(d3.easeBounceInOut)
       .attr('y', (d, i) => yScale(Y[i]))
@@ -70,14 +71,7 @@ const Histogram = ({ data, width, height, margin }) => {
     view.exit().remove();
   }, [data, d3Container.current]);
 
-  return (
-    <svg
-      className="d3-component"
-      width={width}
-      height={height}
-      ref={d3Container}
-    />
-  );
+  return <svg width={width} height={height} ref={d3Container} />;
 };
 
 export default Histogram;

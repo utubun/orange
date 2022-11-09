@@ -1,14 +1,14 @@
-circle.node {
+.node {
   fill: skyblue;
-  r: 5pt;
+  opacity: 0.75;
 }
 
-circle.node:hover {
-  r: 5.5pt;
+.vertex:hover {
+  opacity: 0.95;
 }
 
 .edge {
-  stroke: skyblue;
+  stroke: black;
   stroke-width: 0.5pt;
 }
 
@@ -16,9 +16,9 @@ circle.node:hover {
   stroke-width: 1pt;
 }
 
-.node-label {
+.vertex-label {
   text-anchor: middle;
-  dominant-baseline: central;
+  /*dominant-baseline: central;*/
   font-family: 'Helvetica Neue', Helvetica, sans-serif;
   fill: #666;
   font-size: 6pt;

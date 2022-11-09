@@ -1,0 +1,27 @@
+.sidebar {
+  height: 100%;
+  width: 100px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  opacity: 0.75;
+  padding-top: 60px;
+}
+
+.sidebar:hover {
+  width: 250px;
+  transition: ease-out;
+}
+
+.sidebar a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+}
+
+.sidebar a:hover {
+  color: #f1f1f1;
+}

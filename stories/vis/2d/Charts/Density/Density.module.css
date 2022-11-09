@@ -8,7 +8,6 @@ rect:hover {
   opacity: 0.75;
 }
 
-text {
-  color: darkgray;
-  text-align: left;
+.chartTitle {
+  background-color: red;
 }

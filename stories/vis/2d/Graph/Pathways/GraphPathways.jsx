@@ -1,8 +1,8 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import * as d3 from 'd3';
-import './graph.module.css';
+import './GraphPathways.module.css';
 
-const Graph = ({ data, width, height, margin, remove }) => {
+const GraphPathways = ({ data, width, height, r }) => {
   const d3Container = useRef(null);
 
   useEffect(() => {
@@ -15,22 +15,27 @@ const Graph = ({ data, width, height, margin, remove }) => {
     svg.selectAll('*').remove();
 
     // create group for plotting
-    const view = svg.append('g').attr('width', width).attr('height', height);
+    const view = svg.append('g');
+
+    function setNodeId(node) {
+      return node.id;
+    }
 
     // run the force simulation
     const simulation = d3
       .forceSimulation(data.nodes)
-      .force('charge', d3.forceManyBody().strength(-1000))
+      .force('charge', d3.forceManyBody().strength(-9.5))
       .force('center', d3.forceCenter(width / 2, height / 2))
       .force(
         'collision',
-        d3.forceCollide().radius((d) => d.r)
+        d3.forceCollide().radius((d) => 10)
       )
       .force(
         'link',
         d3
           .forceLink()
           .links(data.links)
+          .id((d) => setNodeId(d))
           .strength((d) => d.weight)
       )
       .on('tick', ticked);
@@ -42,18 +47,23 @@ const Graph = ({ data, width, height, margin, remove }) => {
       updateNodeLabels();
     }
 
+    // bind to boundaries
+    const boundaries = (x, left, right) => d3.max([left, d3.min([right, x])]);
+
     // define function to update existing nodes
     const updateNodes = () => {
-      view
+      const node = view
         .selectAll('circle')
         .data(data.nodes)
         .join('circle')
-        .classed('vertex', true)
-        .attr('r', '12pt') //(d) => d.r)
-        .attr('cx', (d) => d.x)
-        .attr('cy', (d) => d.y)
-        .attr('fill', (d) => d.fill)
-        .call(drag(simulation));
+        .attr('class', '.node')
+        .attr('r', r) //(d) => d.r)
+        .attr('cx', (d) => boundaries(d.x, r, width - r))
+        .attr('cy', (d) => boundaries(d.y, r, height - r))
+        .attr('fill', 'red')
+        .call(drag(simulation))
+        .exit()
+        .remove();
     };
 
     // define the function to update existing node labels
@@ -62,9 +72,9 @@ const Graph = ({ data, width, height, margin, remove }) => {
         .selectAll('text')
         .data(data.nodes)
         .join('text')
-        .classed('.node-label', true)
-        .attr('x', (d) => d.x)
-        .attr('y', (d) => d.y)
+        .attr('class', 'node--label')
+        .attr('x', (d) => boundaries(d.x, r, width - r))
+        .attr('y', (d) => boundaries(d.y, r, height - r))
         .text((d) => d.id)
         .call(drag(simulation));
     };
@@ -75,11 +85,11 @@ const Graph = ({ data, width, height, margin, remove }) => {
         .selectAll('line')
         .data(data.links)
         .join('line')
-        .classed('edge', true)
-        .attr('x1', (d) => d.source.x)
-        .attr('x2', (d) => d.target.x)
-        .attr('y1', (d) => d.source.y)
-        .attr('y2', (d) => d.target.y)
+        //.classed('edge', true)
+        .attr('x1', (d) => boundaries(d.source.x, r, width - r))
+        .attr('x2', (d) => boundaries(d.target.x, r, width - r))
+        .attr('y1', (d) => boundaries(d.source.y, r, height - r))
+        .attr('y2', (d) => boundaries(d.target.y, r, height - r))
         .attr('stroke-width', '0.5pt')
         .attr('stroke', 'gray');
     };
@@ -109,9 +119,12 @@ const Graph = ({ data, width, height, margin, remove }) => {
         .on('drag', dragged)
         .on('end', dragended);
     }
+
+    // remove view
+    //view.exit().remove();
   }, [data, d3Container.current]);
 
   return <svg width={width} height={height} ref={d3Container} />;
 };
 
-export default Graph;
+export default GraphPathways;

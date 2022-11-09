@@ -1,0 +1,25 @@
+.node {
+  fill: red;
+  opacity: 0.75;
+}
+
+.node:hover {
+  opacity: 0.95;
+}
+
+.edge {
+  stroke: black;
+  stroke-width: 0.5pt;
+}
+
+.edge:hover {
+  stroke-width: 1pt;
+}
+
+.node-label {
+  text-anchor: middle;
+  /*dominant-baseline: central;*/
+  font-family: 'Helvetica Neue', Helvetica, sans-serif;
+  fill: red;
+  font-size: 3pt;
+}

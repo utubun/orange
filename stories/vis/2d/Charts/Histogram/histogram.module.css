@@ -1,0 +1,13 @@
+.histogram {
+  padding: auto;
+}
+
+.histogram.bar {
+  fill: crimson;
+  opacity: 0.5;
+}
+
+.histogram.bar:hover {
+  fill: crimson;
+  opacity: 0.75;
+}

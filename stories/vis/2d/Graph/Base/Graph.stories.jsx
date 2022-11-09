@@ -89,6 +89,7 @@ BaseGraph.args = {
   width: 300,
   height: 300,
   margin: margin,
+  remove: [],
 };
 
 export default {
