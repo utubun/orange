@@ -12,6 +12,11 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@mui/icons-material": "^5.10.9",
+    "@mui/material": "^5.10.11",
+    "@mui/styles": "^5.10.14",
     "d3": "^7.6.1",
     "next": "12.3.1",
     "react": "18.2.0",
