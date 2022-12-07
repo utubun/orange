@@ -1,0 +1,17 @@
+.box {
+    box-sizing: border-box;
+    height: 350px;
+    padding: 25px;
+    width:  350px;
+    display: flexbox;
+    border: 5px solid rebeccapurple;
+}
+
+h1 {
+    font-weight: 900;
+    font-size: 20px;
+    line-height: 1;
+    margin: 6px 0 6px 10px;
+    display: inline-block;
+    vertical-align: top;
+  }

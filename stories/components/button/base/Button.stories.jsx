@@ -1,0 +1,31 @@
+import React from 'react';
+
+import "@blueprintjs/core/lib/css/blueprint.css";
+import "@blueprintjs/icons/lib/css/blueprint-icons.css";
+
+import { Button } from '@blueprintjs/core';
+
+// More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
+export default {
+  title: 'Tools/Button',
+  component: Button,
+  // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
+  argTypes: {
+    backgroundColor: { control: 'color' },
+  },
+};
+
+// More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
+const Template = (args) => <Button {...args} />;
+
+export const Primary = Template.bind({});
+
+Primary.args = {
+  intent: 'loading',
+  text: 'Reload',
+  icon: 'export',
+  disabled: false,
+  loading: false,
+  large: true,
+  type: 'submit'
+}
